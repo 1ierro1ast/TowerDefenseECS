@@ -1,3 +1,4 @@
+using Codebase.ECS.Systems;
 using Leopotam.Ecs;
 using Voody.UniLeo;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace Codebase.ECS
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
 
+            _systems
+                .Add(new MoveSystem())
+                .Init();
         }
         
         private void Update()
