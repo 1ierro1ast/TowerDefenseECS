@@ -15,7 +15,6 @@ namespace Codebase.ECS.Systems
             {
                 ref MoveComponent moveComponent = ref _moveFilter.Get1(entityId);
                 ref TransformComponent transformComponent = ref _moveFilter.Get2(entityId);
-
                 transformComponent.Transform.position += moveComponent.Direction * (moveComponent.Speed * Time.deltaTime);
             }
         }

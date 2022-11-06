@@ -15,11 +15,19 @@ namespace Codebase.ECS
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
 
-            _systems
-                .Add(new MoveSystem())
-                .Init();
+            _systems.ConvertScene();
+
+            AddSystems();
+            
+            _systems.Init();
         }
-        
+
+        private void AddSystems()
+        {
+            _systems
+                .Add(new MoveSystem());
+        }
+
         private void Update()
         {
             _systems?.Run();
