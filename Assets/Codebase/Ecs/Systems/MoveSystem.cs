@@ -1,13 +1,13 @@
-﻿using Codebase.ECS.Components;
+﻿using Codebase.Ecs.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Codebase.ECS.Systems
+namespace Codebase.Ecs.Systems
 {
     public class MoveSystem : IEcsRunSystem
     {
-        private EcsWorld _ecsWorld;
-        private EcsFilter<MoveComponent, TransformComponent> _moveFilter = default;
+        private readonly EcsWorld _ecsWorld = default;
+        private readonly EcsFilter<MoveComponent, TransformComponent> _moveFilter = default;
         
         public void Run()
         {

@@ -1,10 +1,14 @@
-using Codebase.ECS.Systems;
+using Codebase.Ecs.Components.OneFrames;
+using Codebase.Ecs.Services;
+using Codebase.Ecs.Systems;
 using Leopotam.Ecs;
-using Voody.UniLeo;
 using UnityEngine;
+using Voody.UniLeo;
 
-namespace Codebase.ECS
+namespace Codebase.Ecs
 {
+    [RequireComponent(typeof(UnitsFactory))]
+    [RequireComponent(typeof(GameVariables))]
     public class EcsStartup : MonoBehaviour
     {
         private EcsWorld _world;
@@ -18,14 +22,33 @@ namespace Codebase.ECS
             _systems.ConvertScene();
 
             AddSystems();
+            AddOneFrames();
+            AddInjections();
             
             _systems.Init();
+        }
+
+        private void AddOneFrames()
+        {
+            _systems
+                .OneFrame<SpawnButtonClicked>()
+                .OneFrame<TimerEnd>();
         }
 
         private void AddSystems()
         {
             _systems
+                .Add(new TimerSystem())
+                .Add(new SpawnButtonClickHandlerSystem())
+                .Add(new PlayerUnitViewCreateSystem())
                 .Add(new MoveSystem());
+        }
+
+        private void AddInjections()
+        {
+            _systems
+                .Inject(GetComponent<IGameVariables>())
+                .Inject(GetComponent<IUnitsFactory>());
         }
 
         private void Update()

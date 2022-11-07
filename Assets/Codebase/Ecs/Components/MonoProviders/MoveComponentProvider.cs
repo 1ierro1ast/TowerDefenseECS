@@ -1,6 +1,6 @@
 ﻿using Voody.UniLeo;
 
-namespace Codebase.ECS.Components.MonoProviders
+namespace Codebase.Ecs.Components.MonoProviders
 {
     public class MoveComponentProvider : MonoProvider<MoveComponent>
     {
