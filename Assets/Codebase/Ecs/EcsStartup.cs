@@ -24,7 +24,7 @@ namespace Codebase.Ecs
             AddSystems();
             AddOneFrames();
             AddInjections();
-            
+
             _systems.Init();
         }
 
@@ -41,7 +41,9 @@ namespace Codebase.Ecs
                 .Add(new TimerSystem())
                 .Add(new SpawnButtonClickHandlerSystem())
                 .Add(new PlayerUnitViewCreateSystem())
-                .Add(new MoveSystem());
+                .Add(new CameraHandleDirectionSystem())
+                .Add(new MoveSystem())
+                .Add(new ClampPositionSystem());
         }
 
         private void AddInjections()
